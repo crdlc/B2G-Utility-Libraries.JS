@@ -1,0 +1,35 @@
+1) Install CoverJS in your PC using nodejs package manager:
+
+  > npm install coverjs
+
+2) Create an instrumented library from your library that you are testing
+
+  > cover.js your_library.js --output instrumented
+
+3) Go to your_library_test.html and add this CSS
+
+  <link rel="stylesheet" href="../../../test_infra/vendor/jscovreporter/reporter.css">
+
+4) Add these Javascript files after chai.js
+
+  <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+  <script src="../../../test_infra/vendor/underscore/underscore-min.js"></script>
+  <script src="../../../test_infra/vendor/backbone/backbone-min.js"></script>
+  <script src="../../../test_infra/vendor/jscovreporter/reporter.js"></script>
+  <script src="../../../test_infra/vendor/jscovreporter/JSCovReporter.js"></script>
+
+5) Add this code after your your_library_test.js file import
+
+  <script src="../instrumented/your_library.js"></script>
+
+6) Finally add this callback to the run method of mocha
+
+  mocha.run(function () {
+    if (typeof window.__$coverObject !== 'undefined') {
+      var reporter = new JSCovReporter({
+        coverObject: window.__$coverObject
+      });
+    }
+  });
+
+Example using test coverage: "components/action-menu/test/action_menu_test.html"
