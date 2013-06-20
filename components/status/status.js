@@ -109,13 +109,14 @@ utils.status = (function() {
       return;
     }
 
+    section = document.createElement('section');
+
     var link = document.createElement('link');
     link.type = 'text/css';
     link.rel = 'stylesheet';
     link.href = getPath() + 'status-behavior.css';
     document.head.appendChild(link);
 
-    section = document.createElement('section');
     section.setAttribute('role', 'status');
     section.classList.add('hidden');
 
@@ -125,10 +126,6 @@ utils.status = (function() {
     document.body.appendChild(section);
 
     section.addEventListener('animationend', animationEnd);
-
-    window.addEventListener('statusshow', function onStatusStart(e) {
-      show(e.detail.message, e.detail.duration);
-    });
   }
 
   // Initializing the library
@@ -142,6 +139,11 @@ utils.status = (function() {
   }
 
   return {
+    /*
+     * The library is auto-initialized but it is for unit testing purposes
+     */
+    init: initialize,
+
     /*
      * Shows the status component
      *
