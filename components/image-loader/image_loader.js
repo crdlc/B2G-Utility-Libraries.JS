@@ -3,7 +3,7 @@
  *
  *  Product: Open Web Device
  *
- *  Copyright(c) 2012 Telefónica I+D S.A.U.
+ *  Copyright(c) 2012 Telef√≥nica I+D S.A.U.
  *
  *  LICENSE: Apache 2.0
  *
